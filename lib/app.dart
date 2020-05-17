@@ -1,4 +1,5 @@
 import 'package:covid_tracker/providers/covid_data.dart';
+import 'package:covid_tracker/widgets/navigation_bar.dart';
 import './providers/data.dart';
 import 'package:covid_tracker/screens/covid_data_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +13,14 @@ class CovidTrackerApp extends StatelessWidget {
           value: CovidData(),
         ),
       ],
-      
+
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'shareApp',
         color: Color(0xff1b5e20),
         routes: {
 
-          '/': (ctx) => CovidDataScreen(),
+          '/': (ctx) => NavigationBar(),
 
         },
       ),
