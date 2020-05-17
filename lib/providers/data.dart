@@ -14,14 +14,14 @@ class GlobalData with ChangeNotifier {
   final int totalRecovered;
 
   GlobalData({
-    @required this.id,
-    @required this.totalCases,
-    @required this.newConfirmed,
-    @required this.totalConfirmed,
-    @required this.newDeaths,
-    @required this.totalDeaths,
-    @required this.newRecovered,
-    @required this.totalRecovered
+    this.id,
+    this.totalCases,
+    this.newConfirmed,
+    this.totalConfirmed,
+    this.newDeaths,
+    this.totalDeaths,
+    this.newRecovered,
+    this.totalRecovered
   });
 
 }
@@ -37,13 +37,13 @@ class CountryWiseData with ChangeNotifier {
   final int totalRecovered;
 
   CountryWiseData({
-    @required this.country,
-    @required this.newConfirmed,
-    @required this.totalConfirmed,
-    @required this.newDeaths,
-    @required this.totalDeaths,
-    @required this.newRecovered,
-    @required this.totalRecovered
+    this.country,
+    this.newConfirmed,
+    this.totalConfirmed,
+    this.newDeaths,
+    this.totalDeaths,
+    this.newRecovered,
+    this.totalRecovered
   });
 
 }
