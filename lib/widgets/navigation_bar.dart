@@ -1,5 +1,7 @@
 import 'package:covid_tracker/helpers/sizes.dart';
-import 'package:covid_tracker/screens/covid_data_screen.dart';
+import 'package:covid_tracker/screens/country_wise_data_screen.dart';
+import 'package:covid_tracker/screens/global_data_screen.dart';
+import 'package:covid_tracker/screens/helpline_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -13,7 +15,7 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
 
-  int _curIndex = 0;
+  int _curIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,9 @@ class _NavigationBarState extends State<NavigationBar> {
 
         index: _curIndex,
         children: [
-          CovidDataScreen(),
-          // BusinessScreen(),
-          // ProfileScreen(),
+          GlobalDataScreen(),
+          CountryWiseDataScreen(),
+          HelplineScreen(),
         ],
 
       ),
