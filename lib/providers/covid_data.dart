@@ -53,7 +53,7 @@ class CovidData with ChangeNotifier {
      ),
 
      CountryWiseData(
-       country: 'India',
+       country: 'USA',
        newConfirmed: 10000,
        totalConfirmed: 10000,
        newDeaths: 10000,
@@ -63,7 +63,7 @@ class CovidData with ChangeNotifier {
      ),
 
      CountryWiseData(
-       country: 'India',
+       country: 'Japan',
        newConfirmed: 10000,
        totalConfirmed: 10000,
        newDeaths: 10000,
@@ -73,7 +73,7 @@ class CovidData with ChangeNotifier {
      ),
 
      CountryWiseData(
-       country: 'India',
+       country: 'Australia',
        newConfirmed: 10000,
        totalConfirmed: 10000,
        newDeaths: 10000,
@@ -83,7 +83,7 @@ class CovidData with ChangeNotifier {
      ),
 
      CountryWiseData(
-       country: 'India',
+       country: 'China',
        newConfirmed: 10000,
        totalConfirmed: 10000,
        newDeaths: 10000,
@@ -93,7 +93,7 @@ class CovidData with ChangeNotifier {
      ),
 
      CountryWiseData(
-       country: 'India',
+       country: 'Africa',
        newConfirmed: 10000,
        totalConfirmed: 10000,
        newDeaths: 10000,
@@ -103,7 +103,7 @@ class CovidData with ChangeNotifier {
      ),
 
      CountryWiseData(
-       country: 'India',
+       country: 'United Kingdom',
        newConfirmed: 10000,
        totalConfirmed: 10000,
        newDeaths: 10000,
@@ -124,6 +124,12 @@ class CovidData with ChangeNotifier {
    List<String> get globalList {
      return _globalList;
    }
+
+   @override
+  void notifyListeners() {
+    // TODO: implement notifyListeners
+    super.notifyListeners();
+  }
 
   // Future<void> fetchCovidData() async {
   //   const url = 'https://api.covid19api.com/summary';
