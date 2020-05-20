@@ -1,4 +1,5 @@
 import 'package:covid_tracker/providers/covid_data.dart';
+import 'package:covid_tracker/providers/helpline.dart';
 import 'package:covid_tracker/screens/country_screen.dart';
 import 'package:covid_tracker/screens/country_wise_data_screen.dart';
 import 'package:covid_tracker/screens/helpline_screen.dart';
@@ -15,6 +16,9 @@ class CovidTrackerApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(
           value: CovidData(),
+        ),
+        ChangeNotifierProvider.value(
+          value: HelplineData(),
         ),
       ],
 
