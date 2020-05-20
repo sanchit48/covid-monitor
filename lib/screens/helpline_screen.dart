@@ -1,5 +1,8 @@
 import 'package:covid_tracker/helpers/sizes.dart';
+import 'package:covid_tracker/providers/helpline.dart';
+import 'package:covid_tracker/widgets/helpline_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 class HelplineScreen extends StatelessWidget {
 
   static const routeName = '/helpline-screen';
@@ -13,8 +16,12 @@ class HelplineScreen extends StatelessWidget {
     }
   }
 
+  List helpline = [];
+
   @override
   Widget build(BuildContext context) {
+
+    List helplineList = Provider.of<HelplineData>(context).helplineList;
 
     var deviceHeight = getViewportHeight(context);
     var deviceWidth = getViewportWidth(context);
@@ -48,7 +55,8 @@ class HelplineScreen extends StatelessWidget {
       ),
 
       body: ListView.builder(
-        itemBuilder: null
+        itemBuilder: (context, index) => HelplineItem(),
+        itemCount: helplineList.length,
       ),
 
     );
