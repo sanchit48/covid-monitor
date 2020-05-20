@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class GlobalData with ChangeNotifier {
 
@@ -45,5 +46,17 @@ class CountryWiseData with ChangeNotifier {
     this.newRecovered,
     this.totalRecovered
   });
+
+}
+
+class Helpline with ChangeNotifier {
+
+  final String stateName;
+  final String helplineNumber;
+
+  Helpline({
+    this.stateName,
+    this.helplineNumber
+   });
 
 }
