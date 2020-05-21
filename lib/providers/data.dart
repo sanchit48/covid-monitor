@@ -5,46 +5,34 @@ import 'package:provider/provider.dart';
 
 class GlobalData with ChangeNotifier {
 
-  final String id;
   final int totalCases;
-  final int newConfirmed;
-  final int totalConfirmed;
-  final int newDeaths;
   final int totalDeaths;
-  final int newRecovered;
   final int totalRecovered;
 
   GlobalData({
-    this.id,
     this.totalCases,
-    this.newConfirmed,
-    this.totalConfirmed,
-    this.newDeaths,
     this.totalDeaths,
-    this.newRecovered,
     this.totalRecovered
   });
 
 }
 
-class CountryWiseData with ChangeNotifier {
+class CountryData with ChangeNotifier {
 
   final String country;
-  final int newConfirmed;
-  final int totalConfirmed;
-  final int newDeaths;
+  final int totalCases;
   final int totalDeaths;
-  final int newRecovered;
   final int totalRecovered;
+  final int totalTests;
+  final int critical;
 
-  CountryWiseData({
+  CountryData({
     this.country,
-    this.newConfirmed,
-    this.totalConfirmed,
-    this.newDeaths,
+    this.totalCases,
     this.totalDeaths,
-    this.newRecovered,
-    this.totalRecovered
+    this.totalRecovered,
+    this.totalTests,
+    this.critical,
   });
 
 }
