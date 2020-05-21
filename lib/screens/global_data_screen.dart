@@ -13,11 +13,8 @@ class GlobalDataScreen extends StatefulWidget {
 
 class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
+  bool _isInit = true;
+  bool _isLoading = false;
 
   void handleClick(String value) {
     switch (value) {
@@ -26,6 +23,21 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
       case 'News':
         break;
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    if(_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<CovidData>(context).fetchCovidData().then((_) => setState(() {
+        _isLoading = false;
+      }));
+
+    }
+    _isInit = false;
+    super.didChangeDependencies();
   }
 
   @override
@@ -67,26 +79,30 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
       backgroundColor: Colors.white,
 
-      body: Container(
+      body: _isLoading
+        ? Center(
+          child: SizedBox(
+            height: 60,
+            width: 60,
+            child: CircularProgressIndicator(
+             // backgroundColor: Color(0xff1b5e20),
+
+            ),
+          ),
+        )
+
+        : Container(
 
         alignment: Alignment.center,
         child: Column(
 
           children: <Widget>[
 
-            // Image.asset(
-            //   'assets/images/worldImage.jpg',
-            //   fit: BoxFit.cover,
-            //   height: deviceHeight*0.24,
-            //   width: deviceWidth,
-            // ),
-
-             SizedBox(height: deviceHeight*0.15,),
+            SizedBox(height: deviceHeight*0.15,),
 
             Container(
 
               alignment: Alignment.center,
-              //margin: EdgeInsets.only(top: deviceHeight*0.04 ),
               height: deviceHeight*0.15,
               width: deviceWidth*0.7,
               child: Card(
@@ -96,17 +112,29 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 ),
                 color: Colors.blue,
 
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child:Center(
-                    child: Text(
-                      'Total Cases\n  '+data.globalData.totalCases.toString(),
-                      style: TextStyle(
-                        fontSize: deviceHeight*0.04,
-                        fontWeight: FontWeight.bold
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.all(deviceHeight*0.022),
+                  child: Column(
+                    children: <Widget> [
+
+                      Text(
+                        'Total Cases',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
                         ),
                       ),
-                    ),
+
+                      Text(
+                        data.globalDataObject.totalCases.toString(),
+
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ]),
                   ),
                 )
               ),
@@ -123,21 +151,33 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)
                   ),
-                color: Colors.red,
+                  color: Colors.red,
 
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                        'Total Deaths\n   '+data.globalData.totalDeaths.toString(),
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.all(deviceHeight*0.022),
+                    child: Column(
+                      children: <Widget> [
 
-                        style: TextStyle(
-                          fontSize: deviceHeight*0.04,
-                          fontWeight: FontWeight.bold
+                        Text(
+                          'Total Deaths',
+                          style: TextStyle(
+                            fontSize: deviceHeight*0.04,
+                            fontWeight: FontWeight.bold
+                          ),
                         ),
-                      ),
+
+                        Text(
+                          data.globalDataObject.totalDeaths.toString(),
+
+                          style: TextStyle(
+                            fontSize: deviceHeight*0.04,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ]
                     ),
-                  )
+                  ),
                 )
               ),
 
@@ -149,26 +189,40 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 height: deviceHeight*0.15,
                 width: deviceWidth*0.7,
                 child: Card(
+
                   elevation: 5,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(15)
                   ),
                   color: Colors.green,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Text(
-                      'Total Recovered\n      '+data.globalData.totalRecovered.toString(),
 
-                      style: TextStyle(
-                        fontSize: deviceHeight*0.04,
-                        fontWeight: FontWeight.bold
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.all(deviceHeight*0.022),
+                      child: Column(
+                        children: <Widget> [
+
+                          Text(
+                            'Total Recovered',
+                            style: TextStyle(
+                              fontSize: deviceHeight*0.04,
+                              fontWeight: FontWeight.bold
+                              ),
+                          ),
+
+                          Text(
+                            data.globalDataObject.totalRecovered.toString(),
+                            style: TextStyle(
+                              fontSize: deviceHeight*0.04,
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ]
                       ),
                     ),
-                  ),
-                )
-              )
-            ),
+                ),
+                ),
+
           ],
         )
       )
