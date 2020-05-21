@@ -15,7 +15,10 @@ class CountryWiseDataScreen extends StatefulWidget {
 }
 
 class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
+
   TextEditingController editingController = TextEditingController();
+  bool isInit = true;
+  bool isLoading = false;
 
    void handleClick(String value) {
     switch (value) {
@@ -26,96 +29,27 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
     }
   }
 
+  List<CountryData> countryWiseList;
 
-// List<CountryWiseData> countryWiseList = [
-
-//      CountryWiseData(
-//        country: 'India',
-//        newConfirmed: 10000,
-//        totalConfirmed: 10000,
-//        newDeaths: 10000,
-//        totalDeaths: 10000,
-//        newRecovered: 10000,
-//        totalRecovered: 10000,
-//      ),
-
-//      CountryWiseData(
-//        country: 'USA',
-//        newConfirmed: 10000,
-//        totalConfirmed: 10000,
-//        newDeaths: 10000,
-//        totalDeaths: 10000,
-//        newRecovered: 10000,
-//        totalRecovered: 10000,
-//      ),
-
-//      CountryWiseData(
-//        country: 'Japan',
-//        newConfirmed: 10000,
-//        totalConfirmed: 10000,
-//        newDeaths: 10000,
-//        totalDeaths: 10000,
-//        newRecovered: 10000,
-//        totalRecovered: 10000,
-//      ),
-
-//      CountryWiseData(
-//        country: 'Australia',
-//        newConfirmed: 10000,
-//        totalConfirmed: 10000,
-//        newDeaths: 10000,
-//        totalDeaths: 10000,
-//        newRecovered: 10000,
-//        totalRecovered: 10000,
-//      ),
-
-//      CountryWiseData(
-//        country: 'China',
-//        newConfirmed: 10000,
-//        totalConfirmed: 10000,
-//        newDeaths: 10000,
-//        totalDeaths: 10000,
-//        newRecovered: 10000,
-//        totalRecovered: 10000,
-//      ),
-
-//      CountryWiseData(
-//        country: 'Africa',
-//        newConfirmed: 10000,
-//        totalConfirmed: 10000,
-//        newDeaths: 10000,
-//        totalDeaths: 10000,
-//        newRecovered: 10000,
-//        totalRecovered: 10000,
-//      ),
-
-//      CountryWiseData(
-//        country: 'United Kingdom',
-//        newConfirmed: 10000,
-//        totalConfirmed: 10000,
-//        newDeaths: 10000,
-//        totalDeaths: 10000,
-//        newRecovered: 10000,
-//        totalRecovered: 10000,
-//      ),
-//    ];
-
-  List<CountryWiseData> countryWiseList;
-
-  var items = List<CountryWiseData>();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  var items = List<CountryData>();
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
 
-    countryWiseList = Provider.of<CovidData>(context).countryWiseList;
+    if(isInit) {
+      setState(() {
+        isLoading = true;
+      });
+    }
+    countryWiseList = Provider.of<CovidData>(context).countryList;
+
     items.addAll(countryWiseList);
+    if(countryWiseList.isNotEmpty) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+    isInit = false;
     super.didChangeDependencies();
   }
 
@@ -123,9 +57,9 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
 
     if(query.isNotEmpty) {
       query = query.toLowerCase();
-      List<CountryWiseData> dummyList = new List<CountryWiseData>();
+      List<CountryData> dummyList = new List<CountryData>();
       dummyList.addAll(countryWiseList);
-      List<CountryWiseData> chosenCountry = dummyList.where((element) => element.country.toLowerCase().substring(0, query.length) == query).toList();
+      List<CountryData> chosenCountry = dummyList.where((element) => element.country.toLowerCase().substring(0, query.length) == query).toList();
 
       print(query);
 
@@ -145,14 +79,12 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
 
   Future<bool> onBackPressed() {
 
-    if(editingController.text.isNotEmpty)
-    {
+    if(editingController.text.isNotEmpty) {
       setState(() {
 
         items.clear();
         items.addAll(countryWiseList);
         editingController.text = '';
-
 
       });
     }
@@ -184,7 +116,7 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
               fontFamily: 'Montserrat',
             ),
           ),
-           actions: <Widget>[
+          actions: <Widget>[
             PopupMenuButton<String>(
               onSelected: handleClick,
               itemBuilder: (BuildContext context) {
@@ -199,62 +131,79 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
           ],
            centerTitle: true,
            backgroundColor: Color(0xff1b5e20)
-         ),
+        ),
 
-        body: Column(
-          children: <Widget>[
+        body: isLoading
+          ? Center(
+            child: SizedBox(
+              height: 60,
+              width: 60,
+              child: CircularProgressIndicator(
+             // backgroundColor: Color(0xff1b5e20),
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Theme(
-                data: new ThemeData(
-                  primaryColor: Color(0xff1b5e20),
-                  primaryColorDark: Colors.red,
+              ),
+            ),
+          )
+
+          : Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 16.0,
+                  left: 8.0,
+                  right: 8.0
                 ),
-                child: TextField(
-                  onChanged: (value) {
-                    filterSearchResults(value);
-                  },
-                  controller: editingController,
-                  decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: 'Search country list',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25))
-
+                child: Theme(
+                  data: new ThemeData(
+                    primaryColor: Color(0xff1b5e20),
+                    primaryColorDark: Colors.red,
                   ),
+                  child: TextField(
+                    onChanged: (value) {
+                      filterSearchResults(value);
+                    },
+                    controller: editingController,
+                    decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    hintText: 'Search country',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(25))
+
+                    ),
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
 
-                  crossAxisCount: 2,
-                  childAspectRatio: (itemWidth)/(itemHeight/1.55),
-                  crossAxisSpacing: 1,
-                  mainAxisSpacing: 1,
+                    crossAxisCount: 2,
+                    childAspectRatio: (itemWidth)/(itemHeight/1.55),
+                    crossAxisSpacing: 1,
+                    mainAxisSpacing: 1,
 
+                  ),
+
+                  padding: EdgeInsets.only(top: itemHeight*0.01),
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CountryScreen(countryObject: items[index],),
+                          )
+                        );
+                      },
+                      child: CountryDataItem(items[index])
+                    );
+                  }
                 ),
-
-                padding: EdgeInsets.only(top: itemHeight*0.01),
-
-                itemCount: items.length,
-
-                itemBuilder: (context, index) {
-
-                  return GestureDetector(
-
-                    onTap: () => Navigator.of(context).pushNamed(CountryScreen.routeName),
-
-                    child: CountryDataItem(items[index])
-
-                  );
-                }
-        ),
-            ),
+              ),
            ],
          ),
       ),
