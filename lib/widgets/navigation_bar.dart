@@ -15,7 +15,7 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
 
-  int _curIndex = 1;
+  int _curIndex = 0;
 
   @override
   Widget build(BuildContext context) {
