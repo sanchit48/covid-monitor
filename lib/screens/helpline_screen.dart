@@ -55,7 +55,7 @@ class HelplineScreen extends StatelessWidget {
       ),
 
       body: ListView.builder(
-        itemBuilder: (context, index) => HelplineItem(),
+        itemBuilder: (context, index) => HelplineItem(helplineList[index]),
         itemCount: helplineList.length,
       ),
 
