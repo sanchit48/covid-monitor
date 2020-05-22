@@ -58,28 +58,34 @@ class CountryScreen extends StatelessWidget {
                 ),
                 color: Colors.blue,
 
-                child: Container(
+              child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.all(deviceHeight*0.022),
-                  child: Column(
-                    children: <Widget> [
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                      Text(
-                        'Total Cases',
+                      TextSpan(
+                        text: 'Total Cases',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
 
-                      Text(
-                        countryObject.totalCases.toString(),
+                      TextSpan(
+                        text: countryObject.totalCases.toString(),
+
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                    ]),
+                    ]
+                    ),
+                  textAlign: TextAlign.center,
+
+                  )
                   ),
                 )
               ),
@@ -98,28 +104,34 @@ class CountryScreen extends StatelessWidget {
                 ),
                 color: Colors.red,
 
-                child: Container(
+               child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.all(deviceHeight*0.022),
-                  child: Column(
-                    children: <Widget> [
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                      Text(
-                        'Total Deaths',
+                      TextSpan(
+                        text: 'Total Deaths',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
 
-                      Text(
-                        countryObject.totalDeaths.toString(),
+                      TextSpan(
+                        text: countryObject.totalDeaths.toString(),
+
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                    ]),
+                    ]
+                    ),
+                  textAlign: TextAlign.center,
+
+                  )
                   ),
                 )
               ),
@@ -138,28 +150,34 @@ class CountryScreen extends StatelessWidget {
                 ),
                 color: Colors.green,
 
-                child: Container(
+               child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.all(deviceHeight*0.022),
-                  child: Column(
-                    children: <Widget> [
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                      Text(
-                        'Total Recovered',
+                      TextSpan(
+                        text: 'Total Recovered',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
 
-                      Text(
-                       countryObject.totalRecovered.toString(),
+                      TextSpan(
+                        text: countryObject.totalRecovered.toString(),
+
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                    ]),
+                    ]
+                    ),
+                  textAlign: TextAlign.center,
+
+                  )
                   ),
                 )
               ),
@@ -181,27 +199,32 @@ class CountryScreen extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.all(deviceHeight*0.022),
-                  child: Column(
-                    children: <Widget> [
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                      Text(
-                        'Total Tests',
+                      TextSpan(
+                        text: 'Total Tests',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
 
-                      Text(
-                        countryObject.totalTests.toString(),
+                      TextSpan(
+                        text: countryObject.totalTests.toString(),
+
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                    ]),
-                  ),
-                )
+                    ]
+                    ),
+                  textAlign: TextAlign.center,
+
+                  )
+                  ),                )
               ),
 
               SizedBox(height: deviceHeight*0.01,),
@@ -221,25 +244,31 @@ class CountryScreen extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.all(deviceHeight*0.022),
-                  child: Column(
-                    children: <Widget> [
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                      Text(
-                        'Critical Cases',
+                      TextSpan(
+                        text: 'Critical Cases',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
 
-                      Text(
-                        countryObject.critical.toString(),
+                      TextSpan(
+                        text: countryObject.critical.toString(),
+
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                    ]),
+                    ]
+                    ),
+                  textAlign: TextAlign.center,
+
+                  )
                   ),
                 )
               ),
