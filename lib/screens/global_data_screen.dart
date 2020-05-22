@@ -115,26 +115,31 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                 child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.all(deviceHeight*0.022),
-                  child: Column(
-                    children: <Widget> [
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                      Text(
-                        'Total Cases',
+                      TextSpan(
+                        text: 'Total Cases',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
 
-                      Text(
-                        data.globalDataObject.totalCases.toString(),
+                      TextSpan(
+                        text: data.globalDataObject.totalCases.toString(),
 
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                    ]),
+                    ]
+                    ),
+                  textAlign: TextAlign.center,
+
+                  )
                   ),
                 )
               ),
@@ -153,30 +158,34 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                   ),
                   color: Colors.red,
 
-                  child: Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.all(deviceHeight*0.022),
-                    child: Column(
-                      children: <Widget> [
+                   child: Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.all(deviceHeight*0.022),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                        Text(
-                          'Total Deaths',
-                          style: TextStyle(
-                            fontSize: deviceHeight*0.04,
-                            fontWeight: FontWeight.bold
-                          ),
+                      TextSpan(
+                        text: 'Total Deaths',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
                         ),
+                      ),
 
-                        Text(
-                          data.globalDataObject.totalDeaths.toString(),
+                      TextSpan(
+                        text: data.globalDataObject.totalDeaths.toString(),
 
-                          style: TextStyle(
-                            fontSize: deviceHeight*0.04,
-                            fontWeight: FontWeight.bold
-                          ),
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
                         ),
-                      ]
+                      ),
+                    ]
                     ),
+                  textAlign: TextAlign.center,
+
+                  )
                   ),
                 )
               ),
@@ -197,31 +206,35 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                   color: Colors.green,
 
                   child: Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.all(deviceHeight*0.022),
-                      child: Column(
-                        children: <Widget> [
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.all(deviceHeight*0.022),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
 
-                          Text(
-                            'Total Recovered',
-                            style: TextStyle(
-                              fontSize: deviceHeight*0.04,
-                              fontWeight: FontWeight.bold
-                              ),
-                          ),
-
-                          Text(
-                            data.globalDataObject.totalRecovered.toString(),
-                            style: TextStyle(
-                              fontSize: deviceHeight*0.04,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ]
+                      TextSpan(
+                        text: 'Total Recovered',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
+                        ),
                       ),
-                    ),
-                ),
-                ),
+
+                      TextSpan(
+                        text: data.globalDataObject.totalRecovered.toString(),
+
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ]
+                  ),
+                  textAlign: TextAlign.center,
+                )
+              ),
+            ),
+          ),
 
           ],
         )
