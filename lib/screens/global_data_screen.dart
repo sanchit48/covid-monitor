@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../helpers/sizes.dart';
 import '../providers/covid_data.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class GlobalDataScreen extends StatefulWidget {
 
@@ -15,6 +16,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
   bool _isInit = true;
   bool _isLoading = false;
+  bool _isError = false;
 
   void handleClick(String value) {
     switch (value) {
@@ -31,10 +33,16 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
       setState(() {
         _isLoading = true;
       });
-      Provider.of<CovidData>(context).fetchCovidData().then((_) => setState(() {
-        _isLoading = false;
-      }));
+        Provider.of<CovidData>(context).fetchCovidData()
+        .then((value) => setState(() {
+          _isLoading = false;
+        })).catchError((error) {
 
+          setState(() {
+            _isError = true;
+          });
+
+      });
     }
     _isInit = false;
     super.didChangeDependencies();
@@ -42,6 +50,8 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    //print('first');
 
     var data = Provider.of<CovidData>(context);
 
@@ -79,20 +89,40 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
       backgroundColor: Colors.white,
 
-      body: _isLoading
-        ? Center(
-          child: SizedBox(
-            height: 60,
-            width: 60,
-            child: CircularProgressIndicator(
-             // backgroundColor: Color(0xff1b5e20),
+      body: _isError
+      ? Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RichText(
+
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: deviceHeight*0.05,
+                color: Colors.red,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: "Something went"
+                ),
+                TextSpan(
+                  text: "\nwrong"
+                ),
+
+              ]
 
             ),
+            textAlign: TextAlign.center,
           ),
-        )
+        ),
+      )
 
-        : Container(
+      : _isLoading
+      
+      ? Center(
+        child: CircularProgressIndicator(),
+      )
 
+      : Container(
         alignment: Alignment.center,
         child: Column(
 
@@ -128,7 +158,8 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                       ),
 
                       TextSpan(
-                        text: data.globalDataObject.totalCases.toString(),
+                        text: "\n${data.globalDataObject.totalCases.toString()}",
+                       // text: "\n10000000",
 
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
@@ -174,8 +205,8 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                       ),
 
                       TextSpan(
-                        text: data.globalDataObject.totalDeaths.toString(),
-
+                        //text: "\n${data.globalDataObject.totalDeaths.toString()}",
+                        text: 'hello',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
@@ -221,7 +252,8 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                       ),
 
                       TextSpan(
-                        text: data.globalDataObject.totalRecovered.toString(),
+                        //text: "\n${data.globalDataObject.totalRecovered.toString()}",
+                        text: 'hello',
 
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
