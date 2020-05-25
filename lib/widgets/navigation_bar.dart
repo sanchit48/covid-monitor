@@ -28,7 +28,7 @@ class _NavigationBarState extends State<NavigationBar> {
       body: IndexedStack(
 
         index: _curIndex,
-        children: [
+        children: <Widget>[
           GlobalDataScreen(),
           CountryWiseDataScreen(),
           HelplineScreen(),
@@ -50,41 +50,20 @@ class _NavigationBarState extends State<NavigationBar> {
           ),
 
           Container(
-            //margin: EdgeInsets.only(top: 50),
             child: Icon(Icons.ac_unit, size: deviceHeight*0.036, color: Colors.white
             )
           ),
 
           Container(
-            //margin: EdgeInsets.only(top: 50),
             child: Icon(Icons.account_box, size: deviceHeight*0.036, color: Colors.white)),
 
         ],
         onTap: (index) {
          setState(() {
             _curIndex = index;
-            // if (index == 0) {
-            //   // _isNewsSelected = true;
-            //   // _isBusinessSelected = false;
-            //   // _isProfileSelected = false;
-            //   //Navigator.pushReplacementNamed(context, NewsScreen.routeName);
-            // }
-            // else if (index == 1) {
-            //   // _isNewsSelected = false;
-            //   // _isBusinessSelected = true;
-            //   // _isProfileSelected = false;
-            // }
-            // else {
-            //   // _isNewsSelected = false;
-            //   // _isProfileSelected  = false;
-            //   // _isBusinessSelected = true;
-            // }
           });
-
         }
-
       ),
-
     );
   }
 }
