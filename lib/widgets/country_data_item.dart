@@ -1,6 +1,8 @@
 import 'package:covid_tracker/helpers/sizes.dart';
+import 'package:covid_tracker/providers/covid_data.dart';
 import 'package:covid_tracker/providers/data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CountryDataItem extends StatelessWidget {
 
@@ -11,6 +13,18 @@ class CountryDataItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    print("biecg");
+
+    var hell = Provider.of<CovidData>(context).countries;
+    String imageName;
+    hell.forEach((key, value) {
+      if(value == countryData.country) {
+        imageName = key;
+        return;
+      }
+    });
+    imageName = imageName.toLowerCase();
+
     var deviceHeight = getViewportHeight(context);
     var deviceWidth = getViewportWidth(context);
 
@@ -20,7 +34,7 @@ class CountryDataItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         elevation: 5,
-        margin: EdgeInsets.all(27),
+        margin: EdgeInsets.all(deviceHeight*0.021),
           child: Column(
             children: <Widget>[
               ClipRRect(
@@ -29,8 +43,8 @@ class CountryDataItem extends StatelessWidget {
                   topRight: Radius.circular(15),
                 ),
                 child: Image.asset(
-                  'assets/images/newsTest.jpg',
-                  height: deviceHeight*0.17,
+                  'assets/images/$imageName.png',
+                  height: deviceHeight*0.1,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
