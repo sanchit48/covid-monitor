@@ -1,13 +1,10 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 
 class GlobalData with ChangeNotifier {
 
-  final int totalCases;
-  final int totalDeaths;
-  final int totalRecovered;
+   int totalCases;
+   int totalDeaths;
+   int totalRecovered;
 
   GlobalData({
     this.totalCases,
@@ -19,12 +16,12 @@ class GlobalData with ChangeNotifier {
 
 class CountryData with ChangeNotifier {
 
-  final String country;
-  final int totalCases;
-  final int totalDeaths;
-  final int totalRecovered;
-  final int totalTests;
-  final int critical;
+   dynamic country;
+   dynamic totalCases;
+   dynamic totalDeaths;
+   dynamic totalRecovered;
+   dynamic totalTests;
+   dynamic critical;
 
   CountryData({
     this.country,
