@@ -1,8 +1,6 @@
 import 'package:covid_tracker/helpers/sizes.dart';
-import 'package:covid_tracker/providers/covid_data.dart';
 import 'package:covid_tracker/providers/data.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 class CountryScreen extends StatelessWidget {
 
   static const routeName = '/country-screen';
@@ -13,8 +11,6 @@ class CountryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    // var countryObject = Provider.of<CovidData>(context).countryList.firstWhere((countryObject) => countryObject.country == countryName);
 
     var deviceHeight = getViewportHeight(context);
     var deviceWidth = getViewportWidth(context);
@@ -74,7 +70,8 @@ class CountryScreen extends StatelessWidget {
                       ),
 
                       TextSpan(
-                        text: countryObject.totalCases.toString(),
+                        text: "\n${countryObject.totalCases.toString()}",
+                        //text: "Hello",
 
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
@@ -120,8 +117,8 @@ class CountryScreen extends StatelessWidget {
                       ),
 
                       TextSpan(
-                        text: countryObject.totalDeaths.toString(),
-
+                        text: "\n${countryObject.totalDeaths.toString()}",
+                        //text: "Hello",
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
@@ -166,8 +163,8 @@ class CountryScreen extends StatelessWidget {
                       ),
 
                       TextSpan(
-                        text: countryObject.totalRecovered.toString(),
-
+                        text: "\n${countryObject.totalRecovered.toString()}",
+                        //text: "Hello",
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
@@ -212,7 +209,8 @@ class CountryScreen extends StatelessWidget {
                       ),
 
                       TextSpan(
-                        text: countryObject.totalTests.toString(),
+                        text: "\n${countryObject.totalTests.toString()}",
+                        //text: "Hello",
 
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
@@ -257,7 +255,8 @@ class CountryScreen extends StatelessWidget {
                       ),
 
                       TextSpan(
-                        text: countryObject.critical.toString(),
+                        text: "\n${countryObject.critical.toString()}",
+                        //text: "Hello",
 
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
