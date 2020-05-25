@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/covid_data.dart';
 import '../providers/data.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class CountryWiseDataScreen extends StatefulWidget {
 
@@ -33,24 +32,9 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
     }
   }
 
-  void printF() {
-    print("j");
-  }
-
   List<CountryData> countryWiseList;
 
   var items = List<CountryData>();
-  // List<CountryData> items = [
-
-  //   CountryData(
-  //     country: 'country',
-  //     totalCases: 1000,
-  //     totalDeaths: 1000,
-  //     totalRecovered: 1000,
-  //     totalTests: 1000,
-  //     critical: 1000,
-  //   )
-  // ];
 
   void filterSearchResults(String query) {
 
@@ -58,7 +42,7 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
       query = query.toLowerCase();
       List<CountryData> dummyList = new List<CountryData>();
       dummyList.addAll(countryWiseList);
-      List<CountryData> chosenCountry = dummyList.where((element) => element.country.toLowerCase() == query).toList();
+      List<CountryData> chosenCountry = dummyList.where((element) => element.country.toLowerCase().substring(0, query.length) == query).toList();
 
       dummyList.clear();
 
@@ -91,14 +75,11 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
     }
   }
 
-
   @override
   void didChangeDependencies() {
-    print("adnajd");
     if(isInit) {
 
       setState(() {
-        print("a");
         isLoading = true;
       });
 
@@ -109,22 +90,16 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
 
     if(isError) {
       setState(() {
-        print("b");
         isLoading = false;
         isError = true;
       });
     }
     else {
-      print("g");
       countryWiseList = Provider.of<CovidData>(context).countryList;
       items.addAll(countryWiseList);
-      print("c");
-
 
       if(countryWiseList.isNotEmpty) {
         setState(() {
-          print("d");
-
           isLoading = false;
         });
       }
@@ -134,24 +109,15 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
     super.didChangeDependencies();
   }
 
-  List<CountryData> getCountryList(BuildContext context) {
-
-
-  }
 
   @override
   Widget build(BuildContext context) {
-
-    //getCountryList(context);
-        print("rr");
-
 
     var deviceHeight = getViewportHeight(context);
     var deviceWidth = getViewportWidth(context);
 
     var size = MediaQuery.of(context).size;
 
-    /*24 is for notification bar on Android*/
     final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
     final double itemWidth = size.width / 2;
 
@@ -187,33 +153,21 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
 
         body: isLoading
         ? Center(
-
-              child: CircularProgressIndicator(
-             // backgroundColor: Color(0xff1b5e20),
+            child: CircularProgressIndicator(
+            backgroundColor: Color(0xff1b5e20),
           ),
         )
         : isError
         ? Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: RichText(
-
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: deviceHeight*0.05,
-                    color: Colors.red,
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: "Something went"
-                    ),
-                    TextSpan(
-                      text: "\nwrong"
-                    ),
-                  ]
+              child: Text(
+                'Something Went Wrong!!!',
+                style: TextStyle(
+                  fontSize: deviceHeight*0.03,
+                  color: Colors.black
                 ),
-                textAlign: TextAlign.center,
-              ),
+              )
             ),
           )
           : Column(
@@ -250,7 +204,7 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
 
-                    crossAxisCount: 2,
+                    crossAxisCount: 3,
                     childAspectRatio: (itemWidth)/(itemHeight/1.55),
                     crossAxisSpacing: 1,
                     mainAxisSpacing: 1,
