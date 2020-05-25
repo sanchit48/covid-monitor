@@ -41,7 +41,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
           setState(() {
             _isError = true;
           });
-
       });
     }
     _isInit = false;
@@ -93,31 +92,17 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
       ? Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: RichText(
-
-            text: TextSpan(
-              style: TextStyle(
-                fontSize: deviceHeight*0.05,
-                color: Colors.red,
-              ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: "Something went"
-                ),
-                TextSpan(
-                  text: "\nwrong"
-                ),
-
-              ]
-
+          child: Text(
+            'Something Went Wrong!!!',
+            style: TextStyle(
+              fontSize: deviceHeight*0.03,
+              color: Colors.black
             ),
-            textAlign: TextAlign.center,
-          ),
+          )
         ),
       )
 
       : _isLoading
-      
       ? Center(
         child: CircularProgressIndicator(),
       )
@@ -205,8 +190,8 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                       ),
 
                       TextSpan(
-                        //text: "\n${data.globalDataObject.totalDeaths.toString()}",
-                        text: 'hello',
+                        text: "\n${data.globalDataObject.totalDeaths.toString()}",
+                        //text: 'hello',
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
                           fontWeight: FontWeight.bold
@@ -252,8 +237,8 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
                       ),
 
                       TextSpan(
-                        //text: "\n${data.globalDataObject.totalRecovered.toString()}",
-                        text: 'hello',
+                        text: "\n${data.globalDataObject.totalRecovered.toString()}",
+                        //text: 'hello',
 
                         style: TextStyle(
                           fontSize: deviceHeight*0.04,
