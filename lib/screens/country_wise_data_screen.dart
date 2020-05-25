@@ -6,6 +6,9 @@ import 'package:covid_tracker/widgets/country_data_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/covid_data.dart';
+import '../providers/data.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 class CountryWiseDataScreen extends StatefulWidget {
 
   static const routeName = '/country-wise-data-screen';
@@ -19,6 +22,7 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
   TextEditingController editingController = TextEditingController();
   bool isInit = true;
   bool isLoading = false;
+  bool isError = false;
 
    void handleClick(String value) {
     switch (value) {
@@ -29,29 +33,24 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
     }
   }
 
+  void printF() {
+    print("j");
+  }
+
   List<CountryData> countryWiseList;
 
   var items = List<CountryData>();
+  // List<CountryData> items = [
 
-  @override
-  void didChangeDependencies() {
-
-    if(isInit) {
-      setState(() {
-        isLoading = true;
-      });
-    }
-    countryWiseList = Provider.of<CovidData>(context).countryList;
-
-    items.addAll(countryWiseList);
-    if(countryWiseList.isNotEmpty) {
-      setState(() {
-        isLoading = false;
-      });
-    }
-    isInit = false;
-    super.didChangeDependencies();
-  }
+  //   CountryData(
+  //     country: 'country',
+  //     totalCases: 1000,
+  //     totalDeaths: 1000,
+  //     totalRecovered: 1000,
+  //     totalTests: 1000,
+  //     critical: 1000,
+  //   )
+  // ];
 
   void filterSearchResults(String query) {
 
@@ -59,7 +58,9 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
       query = query.toLowerCase();
       List<CountryData> dummyList = new List<CountryData>();
       dummyList.addAll(countryWiseList);
-      List<CountryData> chosenCountry = dummyList.where((element) => element.country.toLowerCase().substring(0, query.length) == query).toList();
+      List<CountryData> chosenCountry = dummyList.where((element) => element.country.toLowerCase() == query).toList();
+
+      dummyList.clear();
 
       print(query);
 
@@ -90,8 +91,60 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
     }
   }
 
+
+  @override
+  void didChangeDependencies() {
+    print("adnajd");
+    if(isInit) {
+
+      setState(() {
+        print("a");
+        isLoading = true;
+      });
+
+    }
+
+    isError = Provider.of<CovidData>(context).isError;
+    print(isError);
+
+    if(isError) {
+      setState(() {
+        print("b");
+        isLoading = false;
+        isError = true;
+      });
+    }
+    else {
+      print("g");
+      countryWiseList = Provider.of<CovidData>(context).countryList;
+      items.addAll(countryWiseList);
+      print("c");
+
+
+      if(countryWiseList.isNotEmpty) {
+        setState(() {
+          print("d");
+
+          isLoading = false;
+        });
+      }
+    }
+
+    isInit = false;
+    super.didChangeDependencies();
+  }
+
+  List<CountryData> getCountryList(BuildContext context) {
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    //getCountryList(context);
+        print("rr");
+
 
     var deviceHeight = getViewportHeight(context);
     var deviceWidth = getViewportWidth(context);
@@ -105,7 +158,6 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
     return WillPopScope(
       onWillPop: onBackPressed,
       child: Scaffold(
-
         appBar: AppBar(
           title: Text(
             'Country-wise Stats',
@@ -134,17 +186,36 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
         ),
 
         body: isLoading
-          ? Center(
-            child: SizedBox(
-              height: 60,
-              width: 60,
+        ? Center(
+
               child: CircularProgressIndicator(
              // backgroundColor: Color(0xff1b5e20),
+          ),
+        )
+        : isError
+        ? Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: RichText(
 
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: deviceHeight*0.05,
+                    color: Colors.red,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "Something went"
+                    ),
+                    TextSpan(
+                      text: "\nwrong"
+                    ),
+                  ]
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
           )
-
           : Column(
             children: <Widget>[
               Padding(
