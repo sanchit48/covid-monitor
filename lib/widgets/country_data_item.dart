@@ -12,9 +12,7 @@ class CountryDataItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    print("biecg");
-
+    
     var hell = Provider.of<CovidData>(context).countries;
     String imageName;
     hell.forEach((key, value) {
