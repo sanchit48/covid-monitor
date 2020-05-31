@@ -9,5 +9,5 @@ void main() {
     )
   );
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(CovidTrackerApp());
+  runApp(CovidMonitor());
 }

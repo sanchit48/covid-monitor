@@ -7,7 +7,7 @@ import 'package:covid_tracker/widgets/navigation_bar.dart';
 import 'package:covid_tracker/screens/global_data_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-class CovidTrackerApp extends StatelessWidget {
+class CovidMonitor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
