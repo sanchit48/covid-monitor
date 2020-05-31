@@ -1,6 +1,6 @@
-import 'package:covid_tracker/helpers/sizes.dart';
-import 'package:covid_tracker/providers/helpline.dart';
-import 'package:covid_tracker/widgets/helpline_item.dart';
+import '../helpers/sizes.dart';
+import '../providers/helpline.dart';
+import '../widgets/helpline_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 class HelplineScreen extends StatelessWidget {
