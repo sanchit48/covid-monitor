@@ -1,4 +1,4 @@
-package com.example.covid_tracker
+package com.example.covid_monitor
 
 import io.flutter.embedding.android.FlutterActivity
 
