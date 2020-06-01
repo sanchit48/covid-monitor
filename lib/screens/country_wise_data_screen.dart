@@ -1,6 +1,7 @@
 import 'package:covid_tracker/helpers/sizes.dart';
 import 'package:covid_tracker/providers/covid_data.dart';
 import 'package:covid_tracker/providers/data.dart';
+import 'package:covid_tracker/screens/about_screen.dart';
 import 'package:covid_tracker/screens/country_screen.dart';
 import 'package:covid_tracker/widgets/country_data_item.dart';
 import 'package:flutter/material.dart';
@@ -22,15 +23,6 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
   bool isInit = true;
   bool isLoading = false;
   bool isError = false;
-
-   void handleClick(String value) {
-    switch (value) {
-      case 'About':
-        break;
-      case 'News':
-        break;
-    }
-  }
 
   List<CountryData> countryWiseList;
 
@@ -136,9 +128,9 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
           ),
           actions: <Widget>[
             PopupMenuButton<String>(
-              onSelected: handleClick,
+              onSelected: (_) => Navigator.of(context).pushNamed(AboutScreen.routeName),
               itemBuilder: (BuildContext context) {
-                return {'About', 'News'}.map((String choice) {
+                return {'About'}.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),
@@ -153,9 +145,14 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
 
         body: isLoading
         ? Center(
-            child: CircularProgressIndicator(
-            backgroundColor: Color(0xff1b5e20),
+            child: SizedBox(
+              height: deviceHeight*0.08,
+              width: deviceHeight*0.08,
+
+              child: CircularProgressIndicator(
+                backgroundColor: Color(0xff1b5e20),
           ),
+            ),
         )
         : isError
         ? Center(

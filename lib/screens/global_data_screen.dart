@@ -1,3 +1,4 @@
+import 'package:covid_tracker/screens/about_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../helpers/sizes.dart';
@@ -17,15 +18,6 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
   bool _isInit = true;
   bool _isLoading = false;
   bool _isError = false;
-
-  void handleClick(String value) {
-    switch (value) {
-      case 'About':
-        break;
-      case 'News':
-        break;
-    }
-  }
 
   @override
   void didChangeDependencies() {
@@ -71,9 +63,9 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
-            onSelected: handleClick,
+            onSelected: (_) => Navigator.of(context).pushNamed(AboutScreen.routeName),
             itemBuilder: (BuildContext context) {
-              return {'About', 'News'}.map((String choice) {
+              return {'About'}.map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -104,8 +96,15 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
       : _isLoading
       ? Center(
-        child: CircularProgressIndicator(),
-      )
+          child: SizedBox(
+            height: deviceHeight*0.08,
+            width: deviceHeight*0.08,
+
+            child: CircularProgressIndicator(
+              backgroundColor: Color(0xff1b5e20),
+            ),
+          ),
+        )
 
       : Container(
         alignment: Alignment.center,
