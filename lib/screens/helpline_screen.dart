@@ -1,3 +1,5 @@
+import 'package:covid_tracker/screens/about_screen.dart';
+
 import '../helpers/sizes.dart';
 import '../providers/helpline.dart';
 import '../widgets/helpline_item.dart';
@@ -6,15 +8,6 @@ import 'package:provider/provider.dart';
 class HelplineScreen extends StatelessWidget {
 
   static const routeName = '/helpline-screen';
-
-  void handleClick(String value) {
-    switch (value) {
-      case 'About':
-        break;
-      case 'News':
-        break;
-    }
-  }
 
   List helpline = [];
 
@@ -39,9 +32,9 @@ class HelplineScreen extends StatelessWidget {
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
-            onSelected: handleClick,
+            onSelected: (_) => Navigator.of(context).pushNamed(AboutScreen.routeName),
             itemBuilder: (BuildContext context) {
-              return {'About', 'News'}.map((String choice) {
+              return {'About'}.map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
