@@ -11,3 +11,15 @@ double getViewportWidth(BuildContext context) {
 
   return data.size.width - data.padding.left - data.padding.right;
 }
+
+double getFullDeviceHeight(BuildContext context) {
+  MediaQueryData data = MediaQuery.of(context);
+
+  return data.size.height;
+}
+
+double getFullDeviceWidth(BuildContext context) {
+  MediaQueryData data = MediaQuery.of(context);
+
+  return data.size.width;
+}
