@@ -26,47 +26,63 @@ class AboutScreen extends StatelessWidget {
         backgroundColor: Color(0xff1b5e20)
       ),
 
-      body: Column(
-          children: <Widget> [
+      body: Container(
 
-            SizedBox(
-              height: deviceHeight*0.02,
-            ),
+          alignment: Alignment.center,
 
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'COVID MONITOR',
-                    style: TextStyle(
-                      fontSize: deviceHeight*0.04,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
-                    )
+            child: Card(
+              elevation: 15,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)
+              ),
+              color: Color(0xff4fc3f7),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'COVID MONITOR',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.038,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                        )
 
-                  ),
-                  TextSpan(
-                    text: '\nDeveloped by Sanchit Khare',
-                    style: TextStyle(
-                      fontSize: deviceHeight*0.021,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold
-                    )
-                  ),
+                      ),
+                      TextSpan(
+                        text: '\nDeveloped by Sanchit Khare',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.021,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w700
+                        )
+                      ),
+                      TextSpan(
+                        text: '\nSOURCE',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.034,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                        )
+                      ),
+                      TextSpan(
+                        text: '\nhttps://github.com/javieraviles/covidAPI',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.021,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w700
+                        )
+                      ),
 
-                ]
+                    ]
 
-              )
-            ),
+                  )
+                ),
+              ),
+            )
 
-            Container(
-
-
-
-            ),
-            
-          ]
         ),
     );
   }
