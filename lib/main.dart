@@ -5,7 +5,7 @@ import './app.dart';
 void main() {
    SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: Color(0xff1b5e20),
+      statusBarColor: Colors.black,
     )
   );
   WidgetsFlutterBinding.ensureInitialized();
