@@ -52,13 +52,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.black, Color(0xff1b5e20)]
+              colors: [Colors.black87, Color(0xff1b5e20)]
             ),
           ),
           child: Container(
             padding: EdgeInsets.all(8),
             height: deviceHeight*0.28,
-            width: deviceWidth*0.4,
+            width: deviceWidth*0.6,
             child: Column(
               children: <Widget>[
 
@@ -68,35 +68,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     borderRadius: BorderRadius.circular(15)
                   ),
                   child: Image.asset(
-                    'assets/images/coronavirus.png'
+                    'assets/images/corona.png'
                   )
                 ),
                 SizedBox(height: deviceHeight*0.02,),
                 SlideTransition(
                   position: offsetAnimation,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "Covid",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: deviceHeight*0.04,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Montserrat',
-                          )
-                        ),
-                        TextSpan(
-                          text: "\nMonitor",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: deviceHeight*0.04,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Montserrat',
-                          ),
-                        ),
-                      ]
+                  child: Text(
+                    "Covid Monitor",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: deviceHeight*0.04,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Montserrat',
                     )
                   )
                 ),
