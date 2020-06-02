@@ -27,7 +27,7 @@ dependencies:
   provider: ^4.0.5+1
   curved_navigation_bar: ^0.3.2
   search_widget: ^1.0.2
-  url_launcher: ^5.4.7
+  url_launcher: ^5.4.10
   fluttertoast: ^4.0.1
 
   # The following adds the Cupertino Icons font to your application.
@@ -37,6 +37,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_launcher_icons: ^0.7.5
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/coronavirus.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
