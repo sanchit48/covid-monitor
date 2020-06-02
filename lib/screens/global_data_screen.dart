@@ -102,6 +102,7 @@ class _GlobalDataScreenState extends State<GlobalDataScreen> {
 
             child: CircularProgressIndicator(
               backgroundColor: Color(0xff1b5e20),
+              strokeWidth: 5,
             ),
           ),
         )

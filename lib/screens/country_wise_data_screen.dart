@@ -151,8 +151,9 @@ class _CountryWiseDataScreenState extends State<CountryWiseDataScreen> {
 
               child: CircularProgressIndicator(
                 backgroundColor: Color(0xff1b5e20),
+                strokeWidth: 5,
+              ),
           ),
-            ),
         )
         : isError
         ? Center(

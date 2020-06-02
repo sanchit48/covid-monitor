@@ -60,6 +60,14 @@ class AboutScreen extends StatelessWidget {
                         )
                       ),
                       TextSpan(
+                        text: '\n',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.021,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w700
+                        )
+                      ),
+                      TextSpan(
                         text: '\nSOURCE',
                         style: TextStyle(
                           fontSize: deviceHeight*0.034,
