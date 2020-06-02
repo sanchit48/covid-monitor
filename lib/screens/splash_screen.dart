@@ -10,14 +10,27 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+
+  AnimationController controller;
+  Animation<Offset> offsetAnimation;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    controller = AnimationController(
+      duration: const Duration(milliseconds: 2500),
+      vsync: this,
+    )..forward();
+    offsetAnimation = Tween<Offset>(
+      begin: Offset(-3, 0),
+      end: const Offset(0, 0),
+    ).animate(CurvedAnimation(
+      parent: controller,
+      curve: Curves.elasticInOut,
+    ));
     Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, "/login");
+      Navigator.pushReplacementNamed(context, "/navigation-bar");
     });
   }
 
@@ -31,100 +44,92 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       backgroundColor: Color(0xff1e88e5),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: deviceHeight*1.04,
-              width: fullDeviceWidth,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.black, Color(0xff6a1b9a)]
-                ),
-              ),
+      body: Container(
+          alignment: Alignment.center,
+          height: deviceHeight*1.04,
+          width: fullDeviceWidth,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.black, Color(0xff1b5e20)]
             ),
-            Positioned(
-              width: fullDeviceWidth,
-              top: (fullDeviceHeight - fullDeviceWidth)/2,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    height: deviceHeight*0.14,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Image.asset(
-                      'assets/images/app_logo.png'
-                    )
-                  ),
-                  SizedBox(height: deviceHeight*0.01,),
-                  Container(
-                    height: deviceHeight*0.065,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Image.asset(
-                      'assets/images/ardra.png'
-                    )
-                  ),
-                  SizedBox(
-                    height: deviceHeight*0.01,
-                  ),
-                  Text(
-                    'WORKS',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: deviceHeight*0.031,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Montserrat',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              height: fullDeviceWidth,
-              width: fullDeviceWidth,
-              bottom: -fullDeviceWidth/1.25,
+          ),
+          child: Container(
+            padding: EdgeInsets.all(8),
+            height: deviceHeight*0.28,
+            width: deviceWidth*0.4,
+            child: Column(
+              children: <Widget>[
 
-              child: Container(
-                child: RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: "Powered by ",
-                      style: TextStyle(
-                        fontSize: deviceHeight*0.025,
-                        color: Colors.white,
-                        fontFamily: 'Montserrat'
-                      ),
-                    ),
-                    TextSpan(
-                      text: "Ardra Cloud",
-                      style: TextStyle(
-                        color: Color(0xff90caf9),
-                        fontFamily: "Montserrat",
-                        fontSize: deviceHeight*0.025,
-                      )
-                    ),
-                    TextSpan(
-                      text: "\nBeyDest Pvt. Ltd.",
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w900,
-                        fontSize: deviceHeight*0.025,
-                      )
-                    ),
-                  ]
+                Container(
+                  height: deviceHeight*0.14,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  child: Image.asset(
+                    'assets/images/coronavirus.png'
+                  )
                 ),
-                textAlign: TextAlign.center,
-                )
-              ),
+                SizedBox(height: deviceHeight*0.02,),
+                SlideTransition(
+                  position: offsetAnimation,
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "Covid",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: deviceHeight*0.04,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'Montserrat',
+                          )
+                        ),
+                        TextSpan(
+                          text: "\nMonitor",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: deviceHeight*0.04,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'Montserrat',
+                          ),
+                        ),
+                      ]
+                    )
+                  )
+                ),
+              ],
             ),
-          ],
-        ),
+          )
+
+          // child: Column(
+          //   children: <Widget>[
+          //     Container(
+          //       height: deviceHeight*0.14,
+          //       decoration: BoxDecoration(
+          //         borderRadius: BorderRadius.circular(15)
+          //       ),
+          //       child: Image.asset(
+          //         'assets/images/ad.png'
+          //       )
+          //     ),
+
+          //     SizedBox(
+          //       height: deviceHeight*0.01,
+          //     ),
+          //     Text(
+          //       'COVID MONITOR',
+          //       style: TextStyle(
+          //         color: Colors.white,
+          //         fontSize: deviceHeight*0.031,
+          //         fontWeight: FontWeight.w700,
+          //         fontFamily: 'Montserrat',
+          //       ),
+          //     ),
+          //   ],
+          // ),
       ),
     );
   }
