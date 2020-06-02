@@ -181,6 +181,52 @@ class CountryScreen extends StatelessWidget {
 
               SizedBox(height: deviceHeight*0.01,),
 
+              Container(
+
+              alignment: Alignment.center,
+              height: deviceHeight*0.15,
+              width: deviceWidth*0.7,
+              child: Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                color: Colors.pink,
+
+               child: Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.all(deviceHeight*0.022),
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+
+                      TextSpan(
+                        text: 'Active Cases',
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+
+                      TextSpan(
+                        text: "\n${countryObject.activeCases.toString()}",
+                        //text: "Hello",
+                        style: TextStyle(
+                          fontSize: deviceHeight*0.04,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ]
+                    ),
+                  textAlign: TextAlign.center,
+
+                  )
+                  ),
+                )
+              ),
+
+              SizedBox(height: deviceHeight*0.01,),
+
                Container(
 
               alignment: Alignment.center,
