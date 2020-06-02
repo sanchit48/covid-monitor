@@ -133,7 +133,7 @@ class CovidData with ChangeNotifier {
     "KM": "Comoros",
     "KN": "Saint Kitts and Nevis",
     "KP": "Korea, Democratic People's Republic of",
-    "KR": "Korea, Republic of",
+    "KR": "S. Korea",
     "KW": "Kuwait",
     "KY": "Cayman Islands",
     "KZ": "Kazakhstan",
@@ -295,6 +295,7 @@ class CovidData with ChangeNotifier {
               totalCases: map['cases'],
               totalDeaths: map['deaths'],
               totalRecovered: map['recovered'],
+              activeCases: map['active'],
               totalTests: map['totalTests'],
               critical: map['critical'],
             ));
