@@ -20,6 +20,7 @@ class CountryData with ChangeNotifier {
    dynamic totalCases;
    dynamic totalDeaths;
    dynamic totalRecovered;
+   dynamic activeCases;
    dynamic totalTests;
    dynamic critical;
 
@@ -28,6 +29,7 @@ class CountryData with ChangeNotifier {
     this.totalCases,
     this.totalDeaths,
     this.totalRecovered,
+    this.activeCases,
     this.totalTests,
     this.critical,
   });
