@@ -28,13 +28,14 @@ class CovidMonitor extends StatelessWidget {
         title: 'Covid Monitor',
         color: Color(0xff1b5e20),
         routes: {
-          '/': (ctx) => NavigationBar(),
+          '/': (ctx) => SplashScreen(),
           GlobalDataScreen.routeName: (ctx) => GlobalDataScreen(),
           CountryWiseDataScreen.routeName: (ctx) => CountryWiseDataScreen(),
           CountryScreen.routeName: (ctx) => CountryScreen(),
           HelplineScreen.routeName: (ctx) => HelplineScreen(),
           AboutScreen.routeName: (ctx) =>  AboutScreen(),
-          SplashScreen.routeName: (ctx) => SplashScreen(),
+          NavigationBar.routeName: (ctx) => NavigationBar()
+          //SplashScreen.routeName: (ctx) => SplashScreen(),
         },
       ),
 
