@@ -1,16 +1,20 @@
-# covid_tracker
+# Covid Tracker
 
-A new Flutter project.
 
-## Getting Started
+## About
 
-This project is a starting point for a Flutter application.
+This is an app which shows covid-19 data world-wide and country-wise with quick access of the statistics.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Features
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Gives you data about covid-19 cases globally.
+- Find data of any country which you can find via a search bar.
+- Provides helpline numbers of all Indian states and it’s union territories.
+
+## Screenshots
+
+ <img src="images/Splash.jpeg" width="310" height="600" /> <img src="images/Global.jpeg" width="310" height="600" /> | <img src="images/Country.jpeg" width="310" height="600" /> |  
+ 
+ <img src="images/Helpline.jpeg" width="310" height="600" /> <img src="images/About.jpeg" width="310" height="600" />
+
